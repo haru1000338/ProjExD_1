@@ -20,15 +20,27 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_lst = pg.key.get_pressed()
-        if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0, -1))
-        if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0, 1))
-        if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1, 0))
-        if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((2, 0))
-        kk_rct.move_ip((-1, 0))
+        # if key_lst[pg.K_UP]:
+        #     kk_rct.move_ip((0, -1))
+        # if key_lst[pg.K_DOWN]:
+        #     kk_rct.move_ip((0, 1))
+        # if key_lst[pg.K_LEFT]:
+        #     kk_rct.move_ip((-1, 0))
+        # if key_lst[pg.K_RIGHT]:
+        #     kk_rct.move_ip((2, 0))
+        # kk_rct.move_ip((-1, 0))
+        x_move = -1
+        y_move = 0     
+        if int(key_lst[pg.K_UP]) - int(key_lst[pg.K_DOWN]) == 1:
+            y_move = -1
+        if int(key_lst[pg.K_UP]) - int(key_lst[pg.K_DOWN]) == -1:
+            y_move = 1
+        if int(key_lst[pg.K_LEFT]) - int(key_lst[pg.K_RIGHT]) == 1:
+            x_move = -2
+        if int(key_lst[pg.K_LEFT]) - int(key_lst[pg.K_RIGHT]) == -1:
+            x_move = 1
+        kk_rct.move_ip((x_move, y_move))
+        
 
         x = tmr%3200
         screen.blit(bg_img, [-x, 0]) #original1
